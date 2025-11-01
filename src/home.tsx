@@ -1,5 +1,4 @@
 import React, { type SVGProps, type SyntheticEvent } from "react";
-import "./App.css";
 
 // --- Icon Components (from lucide-react) ---
 // We inline the SVGs for the icons.
@@ -67,7 +66,7 @@ const CleanLogo: React.FC = () => (
 );
 
 // --- Main App Component ---
-const App: React.FC = () => {
+const Home: React.FC = () => {
   // Define Tailwind classes for components locally
   const buttonBaseClasses =
     "inline-flex items-center justify-center rounded-md text-sm font-medium ring-offset-white transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-slate-950 focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50";
@@ -427,4 +426,4 @@ const App: React.FC = () => {
   );
 };
 
-export default App;
+export default Home;
