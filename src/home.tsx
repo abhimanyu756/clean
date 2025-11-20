@@ -1,4 +1,5 @@
-import React, { type SVGProps } from "react";
+import React, { type SVGProps, useRef, useState } from "react";
+import emailjs from "@emailjs/browser";
 
 // --- Icon Components ---
 const DropletIcon: React.FC<SVGProps<SVGSVGElement>> = (props) => (
@@ -70,6 +71,40 @@ const CleanLogo: React.FC = () => (
 
 // --- Main App Component ---
 const Home: React.FC = () => {
+  const form = useRef<HTMLFormElement>(null);
+  const [isSubmitting, setIsSubmitting] = useState(false);
+
+  const sendEmail = (e: React.FormEvent) => {
+    e.preventDefault();
+    setIsSubmitting(true);
+
+    // REPLACE THESE WITH YOUR ACTUAL EMAILJS KEYS
+    const SERVICE_ID = "service_ao7z20i";
+    const TEMPLATE_ID = "template_0q6m4rc";
+    const PUBLIC_KEY = "ynuh19qSAQNXcsfjn";
+
+    if (form.current) {
+      emailjs
+        .sendForm(SERVICE_ID, TEMPLATE_ID, form.current, {
+          publicKey: PUBLIC_KEY,
+        })
+        .then(
+          () => {
+            alert("Message sent successfully! We will contact you soon.");
+            form.current?.reset();
+            setIsSubmitting(false);
+          },
+          (error) => {
+            console.error("FAILED...", error.text);
+            alert(
+              "Failed to send message. Please try again or contact us directly."
+            );
+            setIsSubmitting(false);
+          }
+        );
+    }
+  };
+
   const buttonBaseClasses =
     "inline-flex items-center justify-center rounded-md text-sm font-medium ring-offset-white transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-slate-950 focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50";
   const buttonVariants = {
@@ -545,7 +580,12 @@ const Home: React.FC = () => {
                   </p>
                 </div>
                 <div className={cardContentClasses}>
-                  <form className="space-y-4">
+                  <form
+                    id="contact-form"
+                    ref={form}
+                    onSubmit={sendEmail}
+                    className="space-y-4"
+                  >
                     <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                       <div className="space-y-2">
                         <label htmlFor="first-name" className={labelClasses}>
@@ -553,8 +593,10 @@ const Home: React.FC = () => {
                         </label>
                         <input
                           id="first-name"
+                          name="first_name"
                           placeholder="John"
                           className={inputClasses}
+                          required
                         />
                       </div>
                       <div className="space-y-2">
@@ -563,8 +605,10 @@ const Home: React.FC = () => {
                         </label>
                         <input
                           id="last-name"
+                          name="last_name"
                           placeholder="Doe"
                           className={inputClasses}
+                          required
                         />
                       </div>
                     </div>
@@ -574,9 +618,11 @@ const Home: React.FC = () => {
                       </label>
                       <input
                         id="email"
+                        name="email"
                         type="email"
                         placeholder="john@example.com"
                         className={inputClasses}
+                        required
                       />
                     </div>
                     <div className="space-y-2">
@@ -585,9 +631,11 @@ const Home: React.FC = () => {
                       </label>
                       <input
                         id="phone"
+                        name="phone"
                         type="tel"
                         placeholder="+91 98765 43210"
                         className={inputClasses}
+                        required
                       />
                     </div>
                     <div className="space-y-2">
@@ -596,6 +644,7 @@ const Home: React.FC = () => {
                       </label>
                       <input
                         id="address"
+                        name="address"
                         placeholder="Your address"
                         className={inputClasses}
                       />
@@ -604,7 +653,11 @@ const Home: React.FC = () => {
                       <label htmlFor="reason" className={labelClasses}>
                         Reason for Contact
                       </label>
-                      <select id="reason" className={selectClasses}>
+                      <select
+                        id="reason"
+                        name="reason"
+                        className={selectClasses}
+                      >
                         <option value="">Select an option</option>
                         <option value="distributor">
                           Become a Distributor
@@ -620,17 +673,22 @@ const Home: React.FC = () => {
                       </label>
                       <textarea
                         id="message"
+                        name="message"
                         placeholder="Please write something so we can contact you ASAP..."
                         className={`${textareaClasses} min-h-[100px]`}
+                        required
                       />
                     </div>
                   </form>
                 </div>
                 <div className={cardFooterClasses}>
                   <button
+                    type="submit"
+                    form="contact-form"
+                    disabled={isSubmitting}
                     className={`${buttonBaseClasses} ${buttonVariants.destructive} w-full ${buttonSizes.defaultSize}`}
                   >
-                    Send Message
+                    {isSubmitting ? "Sending..." : "Send Message"}
                   </button>
                 </div>
               </div>
@@ -810,8 +868,7 @@ const Home: React.FC = () => {
         <div className="border-t border-slate-700">
           <div className="container mx-auto px-4 md:px-6 py-6 flex flex-col sm:flex-row justify-between items-center text-sm text-slate-500">
             <p>
-              &copy; 2025 Clean Water Co. All rights reserved. FSSAI:
-              1042599000148
+              © 2025 Clean Water Co. All rights reserved. FSSAI: 1042599000148
             </p>
             <div className="flex space-x-4 mt-4 sm:mt-0">
               <a href="#" className="hover:text-white">
