@@ -1,4 +1,4 @@
-import React, { type SVGProps, type SyntheticEvent } from "react";
+import React, { type SVGProps } from "react";
 
 // --- Icon Components ---
 const DropletIcon: React.FC<SVGProps<SVGSVGElement>> = (props) => (
