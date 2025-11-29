@@ -330,7 +330,7 @@ const Home: React.FC = () => {
                   {/* 3D Bottle Replacement - Lalrge Scale */}
                   <Bottle3D
                     className="w-full h-96"
-                    scale={42}
+                    scale={47}
                     verticalOffset={0.15}
                   />
                 </div>
@@ -834,9 +834,23 @@ const Home: React.FC = () => {
         </div>
         <div className="border-t border-slate-700">
           <div className="container mx-auto px-4 md:px-6 py-6 flex flex-col sm:flex-row justify-between items-center text-sm text-slate-500">
-            <p>
-              © 2025 Clean Water Co. All rights reserved. FSSAI: 1042599000148
-            </p>
+            <div className="flex flex-col sm:flex-row items-center gap-2">
+              <p>
+                © 2025 Clean Water Co. All rights reserved. FSSAI: 1042599000148
+              </p>
+              <span className="hidden sm:inline">•</span>
+              <p className="flex items-center gap-1">
+                Developed by{" "}
+                <a
+                  href="https://www.linkedin.com/in/abhimanyu-k-00b40611a/"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="text-cyan-400 hover:text-cyan-300 transition-colors font-medium"
+                >
+                  Abhimanyu Kumar
+                </a>
+              </p>
+            </div>
             <div className="flex space-x-4 mt-4 sm:mt-0">
               <a href="#" className="hover:text-white">
                 Privacy Policy
