@@ -208,7 +208,7 @@ const Home: React.FC = () => {
           </div>
           {/* 3D Bottle Visual Replacement */}
           <div className="flex items-center justify-center h-[500px] w-full">
-            <Bottle3D className="w-full h-full" scale={2.8} />
+            <Bottle3D className="w-full h-full" scale={40} />
           </div>
         </section>
 
@@ -286,7 +286,7 @@ const Home: React.FC = () => {
               <div className={cardClasses}>
                 <div className="p-6 flex items-center justify-center min-h-[350px] bg-gradient-to-b from-slate-50 to-white overflow-hidden">
                   {/* 3D Bottle Replacement - Small Scale */}
-                  <Bottle3D className="w-full h-64" scale={1.8} />
+                  <Bottle3D className="w-full h-64" scale={40} />
                 </div>
                 <div className={cardHeaderClasses}>
                   <h3 className={cardTitleClasses}>250 ML</h3>
@@ -308,7 +308,7 @@ const Home: React.FC = () => {
               <div className={cardClasses}>
                 <div className="p-6 flex items-center justify-center min-h-[350px] bg-gradient-to-b from-slate-50 to-white overflow-hidden">
                   {/* 3D Bottle Replacement - Medium Scale */}
-                  <Bottle3D className="w-full h-72" scale={2.2} />
+                  <Bottle3D className="w-full h-80" scale={45} />
                 </div>
                 <div className={cardHeaderClasses}>
                   <h3 className={cardTitleClasses}>1 Litre</h3>
@@ -327,8 +327,12 @@ const Home: React.FC = () => {
               {/* 2 Litre Bottle */}
               <div className={cardClasses}>
                 <div className="p-6 flex items-center justify-center min-h-[350px] bg-gradient-to-b from-slate-50 to-white overflow-hidden">
-                  {/* 3D Bottle Replacement - Large Scale */}
-                  <Bottle3D className="w-full h-80" scale={2.5} />
+                  {/* 3D Bottle Replacement - Lalrge Scale */}
+                  <Bottle3D
+                    className="w-full h-96"
+                    scale={42}
+                    verticalOffset={0.15}
+                  />
                 </div>
                 <div className={cardHeaderClasses}>
                   <h3 className={cardTitleClasses}>2 Litre</h3>
@@ -420,7 +424,7 @@ const Home: React.FC = () => {
                   className="aspect-square bg-slate-200 rounded-lg overflow-hidden"
                 >
                   <img
-                    src={`https://placehold.co/600x600/e2e8f0/64748b?text=Gallery+${i}`}
+                    src={`/image${i}.jpeg`}
                     alt={`Gallery ${i}`}
                     className="w-full h-full object-cover hover:scale-105 transition-transform duration-300"
                   />
