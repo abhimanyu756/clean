@@ -1,6 +1,6 @@
 import React, { type SVGProps, useRef, useState } from "react";
 import emailjs from "@emailjs/browser";
-import Bottle3D from "./Bottle3D"; // Import the new 3D component
+import LazyBottle3D from "./LazyBottle3D"; // Lazy-loaded 3D component
 
 // --- Icon Components ---
 const DropletIcon: React.FC<SVGProps<SVGSVGElement>> = (props) => (
@@ -208,7 +208,7 @@ const Home: React.FC = () => {
           </div>
           {/* 3D Bottle Visual Replacement */}
           <div className="flex items-center justify-center h-[500px] w-full">
-            <Bottle3D className="w-full h-full" scale={40} />
+            <LazyBottle3D className="w-full h-full" scale={40} />
           </div>
         </section>
 
@@ -286,7 +286,7 @@ const Home: React.FC = () => {
               <div className={cardClasses}>
                 <div className="p-6 flex items-center justify-center min-h-[350px] bg-gradient-to-b from-slate-50 to-white overflow-hidden">
                   {/* 3D Bottle Replacement - Small Scale */}
-                  <Bottle3D className="w-full h-64" scale={40} />
+                  <LazyBottle3D className="w-full h-64" scale={40} />
                 </div>
                 <div className={cardHeaderClasses}>
                   <h3 className={cardTitleClasses}>250 ML</h3>
@@ -308,7 +308,7 @@ const Home: React.FC = () => {
               <div className={cardClasses}>
                 <div className="p-6 flex items-center justify-center min-h-[350px] bg-gradient-to-b from-slate-50 to-white overflow-hidden">
                   {/* 3D Bottle Replacement - Medium Scale */}
-                  <Bottle3D className="w-full h-80" scale={45} />
+                  <LazyBottle3D className="w-full h-80" scale={45} />
                 </div>
                 <div className={cardHeaderClasses}>
                   <h3 className={cardTitleClasses}>1 Litre</h3>
@@ -328,7 +328,7 @@ const Home: React.FC = () => {
               <div className={cardClasses}>
                 <div className="p-6 flex items-center justify-center min-h-[350px] bg-gradient-to-b from-slate-50 to-white overflow-hidden">
                   {/* 3D Bottle Replacement - Lalrge Scale */}
-                  <Bottle3D
+                  <LazyBottle3D
                     className="w-full h-96"
                     scale={47}
                     verticalOffset={0.15}
@@ -426,6 +426,10 @@ const Home: React.FC = () => {
                   <img
                     src={`/image${i}.jpeg`}
                     alt={`Gallery ${i}`}
+                    loading="lazy"
+                    decoding="async"
+                    width="400"
+                    height="400"
                     className="w-full h-full object-cover hover:scale-105 transition-transform duration-300"
                   />
                 </div>

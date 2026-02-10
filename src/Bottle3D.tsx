@@ -145,7 +145,8 @@ const Bottle3D: React.FC<Bottle3DProps> = ({
           toneMappingExposure: 1.0,
           outputColorSpace: THREE.SRGBColorSpace,
         }}
-        dpr={[1, 2]}
+        dpr={[1, 1.5]}
+        frameloop="demand"
         onCreated={() => setIsLoading(false)}
       >
         <GradientBackground />
@@ -165,8 +166,8 @@ const Bottle3D: React.FC<Bottle3DProps> = ({
           position={[5, 8, 8]}
           intensity={1.5}
           castShadow
-          shadow-mapSize-width={4096}
-          shadow-mapSize-height={4096}
+          shadow-mapSize-width={2048}
+          shadow-mapSize-height={2048}
           shadow-camera-left={-10}
           shadow-camera-right={10}
           shadow-camera-top={10}
