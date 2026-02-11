@@ -3,6 +3,7 @@ import emailjs from "@emailjs/browser";
 import LazyBottle3D from "./LazyBottle3D";
 import { useScrollAnimation } from "./useScrollAnimation";
 import { useCountUp } from "./useCountUp";
+import BulkOrderModal from "./BulkOrderModal";
 
 // --- Icon Components ---
 const DropletIcon: React.FC<SVGProps<SVGSVGElement>> = (props) => (
@@ -121,6 +122,7 @@ const Home: React.FC = () => {
   const contactAnim = useScrollAnimation();
 
   const [showScrollTop, setShowScrollTop] = useState(false);
+  const [isBulkOrderOpen, setIsBulkOrderOpen] = useState(false);
 
   useEffect(() => {
     const handleScroll = () => {
@@ -207,6 +209,12 @@ const Home: React.FC = () => {
             <a href="#contact" className="text-sm font-medium text-slate-700 hover:text-red-600 transition-colors">Contact</a>
           </nav>
           <div className="flex items-center gap-3">
+            <button
+              onClick={() => setIsBulkOrderOpen(true)}
+              className={`hidden sm:inline-flex ${buttonBaseClasses} ${buttonVariants.outline} ${buttonSizes.sm} border-red-200 text-red-700 hover:bg-red-50`}
+            >
+              Bulk Order
+            </button>
             <a href="#products" className={`hidden sm:inline-flex ${buttonBaseClasses} ${buttonVariants.destructive} ${buttonSizes.sm}`}>Shop Now</a>
             {/* Mobile hamburger */}
             <button
@@ -230,6 +238,15 @@ const Home: React.FC = () => {
               <a href="#about" onClick={() => setMobileMenuOpen(false)} className="py-2.5 px-3 rounded-md text-sm font-medium text-slate-700 hover:bg-slate-50 hover:text-red-600 transition-colors">About Us</a>
               <a href="#gallery" onClick={() => setMobileMenuOpen(false)} className="py-2.5 px-3 rounded-md text-sm font-medium text-slate-700 hover:bg-slate-50 hover:text-red-600 transition-colors">Gallery</a>
               <a href="#contact" onClick={() => setMobileMenuOpen(false)} className="py-2.5 px-3 rounded-md text-sm font-medium text-slate-700 hover:bg-slate-50 hover:text-red-600 transition-colors">Contact</a>
+              <button
+                onClick={() => {
+                  setMobileMenuOpen(false);
+                  setIsBulkOrderOpen(true);
+                }}
+                className={`mt-2 w-full ${buttonBaseClasses} ${buttonVariants.outline} ${buttonSizes.sm} border-red-200 text-red-700 hover:bg-red-50`}
+              >
+                Bulk Order
+              </button>
               <a href="#products" onClick={() => setMobileMenuOpen(false)} className={`mt-2 ${buttonBaseClasses} ${buttonVariants.destructive} ${buttonSizes.sm}`}>Shop Now</a>
             </nav>
           </div>
@@ -992,6 +1009,14 @@ const Home: React.FC = () => {
           <ArrowUpIcon className="w-6 h-6" />
         </button>
       </div>
+
+      <BulkOrderModal
+        isOpen={isBulkOrderOpen}
+        onClose={() => setIsBulkOrderOpen(false)}
+        serviceId={import.meta.env.VITE_EMAILJS_SERVICE_ID}
+        templateId={import.meta.env.VITE_EMAILJS_TEMPLATE_ID}
+        publicKey={import.meta.env.VITE_EMAILJS_PUBLIC_KEY}
+      />
     </div>
   );
 };
